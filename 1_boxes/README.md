@@ -6,4 +6,4 @@ This is a bare minimum example of creating component and rendering it to root el
 
 ## Screenshot
 
-![1_task screenshot](./public/1_task.png?raw=true)
+![1_task screenshot](./1_task.png?raw=true)
