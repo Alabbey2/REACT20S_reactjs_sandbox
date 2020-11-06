@@ -12,22 +12,10 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <div className="cards">
-        <Animal
-          name={this.state.animals[0].name}
-          img={this.state.animals[0].img}
-        />
-        <Animal
-          name={this.state.animals[1].name}
-          img={this.state.animals[1].img}
-        />
-        <Animal
-          name={this.state.animals[2].name}
-          img={this.state.animals[2].img}
-        />
-      </div>
-    );
+    const animalsList = this.state.animals.map((e) => {
+      return <Animal key={e.name} name={e.name} img={e.img} />;
+    });
+    return <div className="cards"> {animalsList} </div>;
   }
 }
 

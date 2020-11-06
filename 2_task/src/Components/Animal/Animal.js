@@ -2,7 +2,6 @@ import React from "react";
 import "./Animal.css";
 
 const greetingText = (name) => {
-  console.log(name);
   alert(`Hello, I am ${name}. It is nice to meet you!`);
 };
 
