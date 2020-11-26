@@ -6,3 +6,4 @@
 - Task 4 - Simple lading page with BC colors
 - Task 5 - Speedgame
 - Task 6 - Forms
+- Task 7 - Get data with axios
