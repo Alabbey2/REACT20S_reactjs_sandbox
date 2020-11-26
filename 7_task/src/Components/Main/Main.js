@@ -1,7 +1,12 @@
 import React from "react";
+import Posts from "../Posts/Posts";
 
 const Main = () => {
-  return <main>Posts will be here</main>;
+  return (
+    <main>
+      <Posts />
+    </main>
+  );
 };
 
 export default Main;
