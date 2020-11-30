@@ -6,6 +6,13 @@ const API = "http://localhost:3001/posts/";
 const Blog = () => {
   const [title, setTitle] = useState("Hello World!");
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState({
+    title: "",
+    desc: "",
+    img: "",
+    author: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     axios.get(API).then((response) => setPosts(response.data));
@@ -16,21 +23,77 @@ const Blog = () => {
     setTitle(newTitle);
   };
 
-  return (
-    <div>
-      <h1 onClick={changeTitleHandler}>{title}</h1>
-      <div className="posts">
-        {posts.map((p) => (
-          <div className="post" key={p.id}>
-            <img src={p.img} />
-            <h2>{p.title}</h2>
-            <p>{p.desc}</p>
-            <p>{p.author}</p>
-          </div>
-        ))}
+  const changeValueHandler = (e) => {
+    setPost({
+      ...post,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const addPosthandler = (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    axios
+      .post(API, post)
+      .then(() => {
+        return axios.get(API);
+      })
+      .then((response) => setPosts(response.data))
+      .then(() => setIsLoading(false));
+  };
+
+  let postList = undefined;
+
+  if (isLoading) {
+    postList = <h1>Loading post</h1>;
+  }
+
+  if (!isLoading) {
+    postList = (
+      <div>
+        <h1 onClick={changeTitleHandler}>{title}</h1>
+        <div className="posts">
+          {posts.map((p) => (
+            <div className="post" key={p.id}>
+              <img src={p.img} />
+              <h2>{p.title}</h2> <p>{p.desc}</p>
+              <p>{p.author}</p>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={addPosthandler}>
+          <input
+            type="text"
+            name="title"
+            onChange={changeValueHandler}
+            placeholder="title"
+          />
+          <input
+            type="text"
+            name="desc"
+            onChange={changeValueHandler}
+            placeholder="desc"
+          />
+          <input
+            type="text"
+            name="img"
+            onChange={changeValueHandler}
+            placeholder="img"
+          />
+          <input
+            type="text"
+            name="author"
+            onChange={changeValueHandler}
+            placeholder="author"
+          />
+          <button type="submit">send new post</button>
+        </form>
       </div>
-    </div>
-  );
+    );
+  }
+  return postList;
 };
 
 export default Blog;
