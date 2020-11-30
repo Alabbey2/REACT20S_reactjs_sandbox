@@ -28,15 +28,19 @@ class Weather extends Component {
   }
 
   render() {
-    return this.state.isLoading ? (
-      <p>Weather loading...</p>
-    ) : (
-      <p>
-        Currenty in {this.state.weather.location.name} is{" "}
-        {this.state.weather.current.weather_descriptions} and temperature is{" "}
-        {this.state.weather.current.temperature}℃ and it feels like{" "}
-        {this.state.weather.current.feelslike}℃
-      </p>
+    if (this.state.isLoading) {
+      return <p>Loading weather...</p>;
+    }
+
+    return (
+      <div>
+        <p>
+          Currenty in {this.state.weather.location.name} is
+          {this.state.weather.current.weather_descriptions} and temperature is
+          {this.state.weather.current.temperature}℃ and it feels like
+          {this.state.weather.current.feelslike}℃
+        </p>
+      </div>
     );
   }
 }
