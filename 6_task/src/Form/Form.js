@@ -1,7 +1,7 @@
 import React from "react";
 import "./Form.css";
 
-const Form = ({ submit, onChange, role }) => {
+const Form = ({ submit, change, role }) => {
   return (
     <div className="form">
       <form onSubmit={submit}>
@@ -11,7 +11,7 @@ const Form = ({ submit, onChange, role }) => {
             type="text"
             name="firstname"
             id="firstname"
-            onChange={onChange}
+            onChange={change}
             required
           />
         </div>
@@ -21,7 +21,7 @@ const Form = ({ submit, onChange, role }) => {
             type="text"
             name="lastname"
             id="lastname"
-            onChange={onChange}
+            onChange={change}
             required
           />
         </div>
@@ -31,7 +31,7 @@ const Form = ({ submit, onChange, role }) => {
             type="phone"
             name="phonenumber"
             id="phonenumber"
-            onChange={onChange}
+            onChange={change}
             required
           />
         </div>
@@ -40,13 +40,13 @@ const Form = ({ submit, onChange, role }) => {
           <textarea
             name="message"
             id="message"
-            onChange={onChange}
+            onChange={change}
             required
           ></textarea>
         </div>
         <div>
           <label htmlFor="role">Role</label>
-          <select name="role" value={role} onChange={onChange}>
+          <select name="role" value={role} onChange={change}>
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
             <option value="other">Other</option>
